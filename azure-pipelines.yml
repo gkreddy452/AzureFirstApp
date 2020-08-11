@@ -9,16 +9,22 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+variables:
+  - group: ios-pipeline
 steps:
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'SogetiCertificates.p12'
-    certPwd: 'sogeti'
+   certSecureFile: '$(p12FileName)'
+   certPwd: '$(p12Password)'
+   keychain: 'temp'
+   deleteCert: true  
 
 - task: InstallAppleProvisioningProfile@1
   inputs:
-    provProfileSecureFile: '3e96fa5b-66eb-42af-8d36-0343f328e4dd.mobileprovision'
+   provisioningProfileLocation: 'secureFiles'
+   provProfileSecureFile: '$(provisioningProfile)'
+   removeProfile: true
 - task: Xcode@5
   inputs:
     actions: 'build'
