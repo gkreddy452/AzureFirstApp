@@ -9,6 +9,13 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+variables:
+  - group: ios-pipeline
+  - name: configuration
+    value: 'Release'
+  - name: sdk
+    value: 'iphoneos'
+
 steps:
 
 - task: InstallAppleCertificate@2
@@ -23,13 +30,6 @@ steps:
    provisioningProfileLocation: 'secureFiles'
    provProfileSecureFile: '$(provisioningProfile)'
    removeProfile: true
-
-variables:
-  - group: ios-pipeline
-  - name: configuration
-    value: 'Release'
-  - name: sdk
-    value: 'iphoneos'
 
 - task: Xcode@5
   inputs:
