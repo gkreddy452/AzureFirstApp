@@ -41,3 +41,9 @@ steps:
     xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
     signingOption: 'default'
     packageApp: true
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
