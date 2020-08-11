@@ -47,5 +47,12 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: '**/*.ipa'
-    targetFolder: '$(system.defaultworkingdirectory)'
+    targetFolder: '$(build.artifactStagingDirectory)'
     overWrite: true
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
