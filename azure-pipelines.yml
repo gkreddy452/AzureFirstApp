@@ -9,8 +9,7 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
-variables:
-  - group: ios-pipeline
+
 steps:
 
 - task: InstallAppleCertificate@2
